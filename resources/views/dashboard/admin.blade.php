@@ -1,1 +1,4 @@
-<h1> Selamat datang admin </h1>
+@extends('template.master')
+@section('content')
+<h1> Selamat Datang Admin </h1>
+@endsection

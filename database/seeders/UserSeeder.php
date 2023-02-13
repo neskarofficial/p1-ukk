@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class UserSeeder extends Seeder
+class Userseeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,18 +18,19 @@ class UserSeeder extends Seeder
         $users = [
          [  'nama_petugas'  => 'admin',
             'username'      => 'admin',
-            'password'      => bcrypt('admin'),
+            'password'      =>  bcrypt('admin'),
             'level'         => 'admin'
         ],
         [
-            'nama_petugas'  => 'petugas',
-            'username'      => 'petugas',
-            'password'      => bcrypt('petugas'),
-            'level'         => 'petugas'
-        ]
+            'nama_petugas'      => 'petugas',
+            'username'          => 'petugas',
+            'password'          => bcrypt('petugas'),
+            'level'             => 'petugas'
+        ],
         ];
+        
         foreach ($users as $key => $value) {
-            user::create($value);
+            User::create($value);
         }
     }
 }
