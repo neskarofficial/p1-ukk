@@ -16,8 +16,8 @@
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">NISN</label>
-                    <input type="number" name="nisn" class="form-control" id="input nisn" placeholder="Silahkan Masukan Nisn">
+                    <label for="input_nisn">NISN</label>
+                    <input type="number" name="nisn" class="form-control" id="input_nisn" placeholder="Silahkan Masukan Nisn">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">NIS</label>
@@ -37,22 +37,33 @@
                 </div>
                   <div class="form-group">
                   <label>Nama Kelas</label>
-                <select class="form-control" name="kelas_id" id="kelas_id">
-                 <option disable selected> --Silahkan Pilih Kelas-- </option>
-                 <option value="XII">XII RPL 1</option>
-                 <option value="XII">XII RPL 2</option>
-                 <option value="XII">XII RPL 3</option>
-                </select>
+                    <select class="form-control" name="kelas_id" id="kelas_id">
+                    <option disable selected value=""> --Silahkan Pilih Kelas-- </option>
+                      @forelse ($kelas as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_kelas }}</option>
+                      @empty
+                        <option value="" disabled>Data Kosong</option>
+                      @endforelse
+                    </select>
                   </div>
+                  @error('kelas_id')
+                    <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                  @enderror
+
                   <div class="form-group">
                   <label>Jumlah Nominal</label>
                 <select class="form-control" name="spps_id" id="spps_id">
                  <option disabled selected>Silahkan Pilih Nominal</option>
-                 <option value="2jt">2000000</option>
-                 <option value="3jt">300000</option>
-                 <option value="4jt">4000000</option>
+                 @forelse ($spps as $item)
+                    <option value="{{ $item->id }}">{{ $item->nominal }}</option>
+                  @empty
+                    <option value="" disabled>Data Kosong</option>
+                  @endforelse
                  </select>
                   </div>
+                  @error('spps_id')
+                  <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                @enderror
                 <!-- /.card-body -->
 
                 <div class="card-footer">

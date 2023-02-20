@@ -44,7 +44,7 @@ class KelasController extends Controller
             'kompetensi_keahlian'   => 'required'
         ],[
             'nama_kelas.required'    => 'Nama Kelas Wajib Di Isi',
-            'kompetensi_keahlian.max'         => 'Kompetensi Keahlian Wajib Di Isi',
+            'kompetensi_keahlian.max' => 'Kompetensi Keahlian Wajib Di Isi',
         ]);
 
         // dd($request);

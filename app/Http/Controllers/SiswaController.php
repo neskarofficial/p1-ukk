@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\siswa;
+use App\Models\Siswa;
+use App\Models\Kelas;
+use App\Models\Spp;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -27,8 +29,9 @@ class SiswaController extends Controller
     public function create()
     {
         //
-        $siswa=Siswa::all();
-        return view('siswa.create',compact('siswa'));
+        $kelas = Kelas::all();
+        $spps = Spp::all();
+        return view('siswa.create',compact('kelas','spps'));
     }
 
     /**
@@ -45,22 +48,24 @@ class SiswaController extends Controller
             'nis' => 'required|max:8',
             'nama' => 'required',
             'alamat' => 'required',
-            'no_tlp' => 'required',
+            'no_telp' => 'required',
             'kelas_id' => 'required',
             'spps_id' => 'required'
         ],[
             'nisn.required'    => 'Nisn Wajib Di Isi',
+            'nisn.max'          => 'NISN maksimal 10 karakter',
             'nis.max'         => 'Nis Wajib Di Isi',
+            'kelas_id.required' => 'Pilih Kelas'
         ]);
 
-        dd($request);
+        // dd($request);
 
         Siswa::create([
             'nisn' => $request -> nisn,
             'nis' => $request -> nis,
             'nama' => $request -> nama,
             'alamat' => $request -> alamat,
-            'no_tlp' => $request -> no_tlp,
+            'no_telp' => $request -> no_telp,
             'kelas_id' => $request -> kelas_id,
             'spps_id' => $request -> spps_id
         ]);
