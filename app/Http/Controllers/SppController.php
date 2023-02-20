@@ -94,6 +94,15 @@ class SppController extends Controller
     public function update(Request $request, Spp $spp)
     {
         //
+        $request->validate([
+            'tahun' => 'required',
+            'nominal' => 'required',
+        ]);
+        $spps = Spp::find($spp->id);
+        $spps->tahun = $request->tahun;
+        $spps->nominal = $request->nominal;
+        $spps->update();
+        return redirect('/spp');
     }
 
     /**
@@ -105,5 +114,8 @@ class SppController extends Controller
     public function destroy(Spp $spp)
     {
         //
+        $spps = Spp::find($spp->id);
+        $spps->delete();
+        return redirect('/spp');
     }
 }

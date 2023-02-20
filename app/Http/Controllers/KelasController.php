@@ -65,6 +65,8 @@ class KelasController extends Controller
     public function show(Kelas $kelas)
     {
         //
+        $kelas = Kelas::find($kelas->id);
+        return view('kelas.show', compact('kelas'));
     }
 
     /**
